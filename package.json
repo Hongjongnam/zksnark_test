@@ -1,0 +1,15 @@
+{
+  "name": "snarkjs-bulk-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "PoseidonHash.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "big-integer": "^1.6.52",
+    "circomlib": "^2.0.5"
+  }
+}
