@@ -30,10 +30,10 @@ async function createCreditProof(
   return { proof, publicSignals };
 }
 
-async function verifyAgeProof(proof, publicSignals) {
-  const vKey = JSON.parse(fs.readFileSync("verification_key.json"));
-  return await snarkjs.groth16.verify(vKey, publicSignals, proof);
-}
+// async function verifyAgeProof(proof, publicSignals) {
+//   const vKey = JSON.parse(fs.readFileSync("verification_key.json"));
+//   return await snarkjs.groth16.verify(vKey, publicSignals, proof);
+// }
 
 async function main() {
   try {
@@ -44,15 +44,18 @@ async function main() {
       20000
     );
     console.log({ proof, publicSignals });
-
-    const verification = await verifyAgeProof(proof, publicSignals);
-    console.log({ verification });
+    fs.writeFileSync("proof.json", JSON.stringify(proof));
+    fs.writeFileSync("public.json", JSON.stringify(publicSignals));
+    // const verification = await verifyAgeProof(proof, publicSignals);
+    // console.log({ verification });
   } catch (err) {
     console.log(err);
   }
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
