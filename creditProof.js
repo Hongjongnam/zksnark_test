@@ -27,6 +27,8 @@ async function createCreditProof(
     "./circuit_js/circuit.wasm",
     "circuit_final.zkey"
   );
+  fs.writeFileSync("proof.json", JSON.stringify(proof));
+  fs.writeFileSync("publicSignals.json", JSON.stringify(publicSignals));
   return { proof, publicSignals };
 }
 

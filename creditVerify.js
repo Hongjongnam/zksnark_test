@@ -9,14 +9,8 @@ async function verifyAgeProof(proof, publicSignals) {
 
 async function main() {
   try {
-    const { proof, publicSignals } = await createCreditProof(
-      "0x210706cbd9D26c26c727f4d3007D819390934375",
-      700,
-      600,
-      20000
-    );
-    console.log({ proof, publicSignals });
-
+    const proof = JSON.parse(fs.readFileSync("proof.json"));
+    const publicSignals = JSON.parse(fs.readFileSync("publicSignals.json"));
     const verification = await verifyAgeProof(proof, publicSignals);
     console.log({ verification });
   } catch (err) {
